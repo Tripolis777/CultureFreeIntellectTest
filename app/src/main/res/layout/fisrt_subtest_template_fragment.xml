@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/subtestFirstImage3"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="0dp"
+        app:layout_constraintLeft_toRightOf="@+id/subtestFirstImage2"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/subtestFirstImage2"
+        app:srcCompat="@color/colorPrimary" />
+
+    <ImageView
+        android:id="@+id/subtestFirstImage2"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        app:srcCompat="@color/colorPrimary"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <ImageView
+        android:id="@+id/subtestFirstImage1"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="0dp"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/subtestFirstImage2"
+        app:layout_constraintTop_toTopOf="@+id/subtestFirstImage2"
+        app:srcCompat="@color/colorPrimary" />
+
+    <ImageView
+        android:id="@+id/subtestFirstImageQuestion"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/subtestFirstImage2"
+        app:srcCompat="@drawable/question" />
+
+    <ImageView
+        android:id="@+id/subtestFirstImageAnswer3"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="0dp"
+        app:layout_constraintLeft_toRightOf="@+id/subtestFirstImageAnswer2"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/subtestFirstImageAnswer2"
+        app:srcCompat="@color/start_button_enabled" />
+
+    <ImageView
+        android:id="@+id/subtestFirstImageAnswer1"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/subtestFirstImageAnswer2"
+        app:layout_constraintTop_toTopOf="@+id/subtestFirstImageAnswer2"
+        app:srcCompat="@color/start_button_enabled" />
+
+    <ImageView
+        android:id="@+id/subtestFirstImageAnswer5"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_marginRight="55dp"
+        app:layout_constraintRight_toRightOf="@+id/subtestFirstImageAnswer3"
+        app:srcCompat="@color/start_button_enabled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp" />
+
+    <ImageView
+        android:id="@+id/subtestFirstImageAnswer4"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_marginLeft="56dp"
+        android:layout_marginRight="16dp"
+        app:layout_constraintLeft_toLeftOf="@+id/subtestFirstImageAnswer1"
+        app:layout_constraintRight_toLeftOf="@+id/subtestFirstImageAnswer5"
+        app:srcCompat="@color/start_button_enabled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintHorizontal_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/subtestFirstImageAnswer2"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:srcCompat="@color/start_button_enabled"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/subtestFirstImageAnswer4" />
+
+</android.support.constraint.ConstraintLayout>
