@@ -1,4 +1,4 @@
-package com.android.tripolis.culturefreeintellecttest.Core.Database.Entries;
+package com.android.tripolis.culturefreeintellecttest.Database.Entries;
 
 import android.provider.BaseColumns;
 

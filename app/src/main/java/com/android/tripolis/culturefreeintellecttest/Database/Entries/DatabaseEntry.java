@@ -1,4 +1,4 @@
-package com.android.tripolis.culturefreeintellecttest.Core.Database.Entries;
+package com.android.tripolis.culturefreeintellecttest.Database.Entries;
 
 /**
  * Created by tripo on 11/5/2017.

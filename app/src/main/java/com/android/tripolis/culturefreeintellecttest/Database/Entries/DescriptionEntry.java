@@ -1,10 +1,7 @@
-package com.android.tripolis.culturefreeintellecttest.Core.Database.Entries;
+package com.android.tripolis.culturefreeintellecttest.Database.Entries;
 
 import android.provider.BaseColumns;
-import android.provider.ContactsContract;
 import android.util.Log;
-
-import com.android.tripolis.culturefreeintellecttest.Core.Description;
 
 import org.json.JSONArray;
 import org.json.JSONException;

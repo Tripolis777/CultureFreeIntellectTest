@@ -5,7 +5,7 @@ import android.content.res.Resources;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 
-import com.android.tripolis.culturefreeintellecttest.Core.Database.Entries.DescriptionEntry;
+import com.android.tripolis.culturefreeintellecttest.Database.Entries.DescriptionEntry;
 
 /**
  * Created by tripo on 11/4/2017.

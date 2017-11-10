@@ -1,6 +1,6 @@
 package com.android.tripolis.culturefreeintellecttest.Core;
 
-import com.android.tripolis.culturefreeintellecttest.Core.Database.Entries.QuestionEntry;
+import com.android.tripolis.culturefreeintellecttest.Database.Entries.QuestionEntry;
 import com.android.tripolis.culturefreeintellecttest.Core.Tools.ImageCutter;
 
 /**
