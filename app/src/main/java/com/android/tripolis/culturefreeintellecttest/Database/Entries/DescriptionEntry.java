@@ -50,6 +50,7 @@ public class DescriptionEntry implements DatabaseEntry {
 
             } catch (JSONException e) {
                 Log.e("[Description data]", "Fail. Can't create json object." + e.getMessage().toString());
+                e.printStackTrace();
             }
         }
 
@@ -69,8 +70,14 @@ public class DescriptionEntry implements DatabaseEntry {
             return examplesTitleKey;
         }
 
+        @Override
+        public String toString() {
+            return data;
+        }
+
     }
 
+    private int subtestIdx;
     private String dataString;
     private DescriptionEntryData data;
 
@@ -81,4 +88,21 @@ public class DescriptionEntry implements DatabaseEntry {
         return data;
     }
 
+    public void setDescriptionData(DescriptionEntryData data) {
+        this.data = data;
+        this.dataString = data.toString();
+    }
+
+    public void setDescriptionData(String dataString) {
+        this.dataString = dataString;
+        this.data = new DescriptionEntryData(dataString);
+    }
+
+    public void setSubtestIdx(int subtestIdx) {
+        this.subtestIdx = subtestIdx;
+    }
+
+    public int getSubtestIdx() {
+        return subtestIdx;
+    }
 }

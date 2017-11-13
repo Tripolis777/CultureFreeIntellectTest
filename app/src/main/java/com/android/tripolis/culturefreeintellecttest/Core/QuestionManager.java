@@ -1,5 +1,9 @@
 package com.android.tripolis.culturefreeintellecttest.Core;
 
+import android.util.Log;
+
+import java.util.ArrayList;
+
 /**
  * Created by tripo on 11/4/2017.
  */
@@ -7,6 +11,7 @@ package com.android.tripolis.culturefreeintellecttest.Core;
 public class QuestionManager {
 
     private FragmentFactory<Question> fragmentFactory;
+    private ArrayList<Question> questions;
 
     private int questionsCount;
 
@@ -19,7 +24,12 @@ public class QuestionManager {
     }
 
     public Question getQuestion(int questionNum) {
-        return null;
+        if (questionNum > questions.size()) {
+            Log.e("[QuestionManager]", "Cant get question. Question num biggest questions count.");
+            throw new NullPointerException();    // TODO: replace to self exception
+        }
+
+        return questions.get(questionNum);
     }
 
     public String getQuestionTitle(int position) {
@@ -28,6 +38,10 @@ public class QuestionManager {
 
     public int getQuestionsCount() {
         return questionsCount;
+    }
+
+    public void setQuestions(ArrayList<Question> questions) {
+        this.questions = questions;
     }
 
 }

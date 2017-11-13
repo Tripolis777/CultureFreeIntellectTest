@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.android.tripolis.culturefreeintellecttest.Core.Question;
 import com.android.tripolis.culturefreeintellecttest.R;
 
 /**
@@ -21,15 +22,17 @@ public class FirstSubtestQuestionFragment extends Fragment {
     private static final int ANSWER_IMAGE_COUNT = 5;
 
     //private FragmentManager fragmentManager;
+    private Question question;
 
     private ImageView questionImageViews[];
     private ImageView answerImageViews[];
 
-    public static FirstSubtestQuestionFragment newInstance() {
+    public static FirstSubtestQuestionFragment newInstance(Question question) {
         Bundle args = new Bundle();
 
         FirstSubtestQuestionFragment fragment = new FirstSubtestQuestionFragment();
         fragment.setArguments(args);
+        fragment.setQuestion(question);
 
         return fragment;
     }
@@ -58,5 +61,9 @@ public class FirstSubtestQuestionFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+    }
+
+    public void setQuestion(Question question) {
+        this.question = question;
     }
 }
