@@ -1,6 +1,7 @@
 package com.android.tripolis.culturefreeintellecttest.Core;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -10,7 +11,10 @@ import com.android.tripolis.culturefreeintellecttest.Database.Query.Condition.Wh
 import com.android.tripolis.culturefreeintellecttest.Database.Query.SimpleSelectQuery;
 import com.android.tripolis.culturefreeintellecttest.Database.Response.DescriptionSelectResponse;
 import com.android.tripolis.culturefreeintellecttest.Database.Response.DescriptionSelectResponseFactory;
+import com.android.tripolis.culturefreeintellecttest.Database.Response.QuestionSelectResponse;
+import com.android.tripolis.culturefreeintellecttest.Database.Response.QuestionSelectResponseFactory;
 import com.android.tripolis.culturefreeintellecttest.Database.Response.SelectResponse;
+import com.android.tripolis.culturefreeintellecttest.Database.Response.SelectResponseFactory;
 import com.android.tripolis.culturefreeintellecttest.Database.Task.DatabaseSelectTask;
 import com.android.tripolis.culturefreeintellecttest.Database.TaskListener;
 
@@ -92,6 +96,25 @@ public class SubtestManager {
                 createListener.onError();
             }
         }, new DescriptionSelectResponseFactory());
+    }
+
+    private DatabaseSelectTask getQuestionsSelectTask(final Context context) {
+        return new DatabaseSelectTask(context, new TaskListener<SelectResponse>() {
+            @Override
+            public void onSuccess(SelectResponse result) {
+
+            }
+
+            @Override
+            public void onError() {
+
+            }
+        }, new SelectResponseFactory<QuestionEntry>() {
+            @Override
+            public SelectResponse<QuestionEntry> getSelectResponse(Cursor cursor) {
+                return new QuestionSelectResponse(cursor);
+            }
+        });
     }
 
     private SimpleSelectQuery getDescriptionSelectQuery(final int subtestIdx) {

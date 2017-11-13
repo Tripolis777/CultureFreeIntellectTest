@@ -11,7 +11,7 @@ import org.json.JSONObject;
  * Created by tripo on 11/5/2017.
  */
 
-public class DescriptionEntry implements DatabaseEntry {
+public class DescriptionEntry extends DatabaseEntry {
 
     public static abstract class DescriptionSchema implements BaseColumns {
         public static final String TABLE_NAME = "description";
