@@ -1,5 +1,6 @@
 package com.android.tripolis.culturefreeintellecttest.Realm;
 
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.android.tripolis.culturefreeintellecttest.Realm.Description.ExamleEntryBuilder;
@@ -19,7 +20,7 @@ import io.realm.annotations.Ignore;
 public class DescriptionEntry extends RealmObject {
 
     public enum DescriptionType {
-        SIMPLE(0), WITH_IMAGES(1);
+        SIMPLE(1), WITH_IMAGES(2);
 
         private final int value;
         DescriptionType(int value) {
@@ -28,6 +29,15 @@ public class DescriptionEntry extends RealmObject {
 
         public int getValue() {
             return value;
+        }
+
+        @Nullable
+        public static DescriptionType getByValue(int value) {
+            for ( DescriptionType type : DescriptionType.values()) {
+                if (type.getValue() == value)
+                    return type;
+            }
+            return null;
         }
     }
 

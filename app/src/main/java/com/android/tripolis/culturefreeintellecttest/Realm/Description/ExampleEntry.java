@@ -24,12 +24,12 @@ public class ExampleEntry {
     }
 
     public DescriptionEntry.DescriptionType getType() {
-        return DescriptionEntry.DescriptionType.values()[type];
+        return DescriptionEntry.DescriptionType.getByValue(type);
     }
 
     public static DescriptionEntry.DescriptionType getType(JSONObject object) throws JSONException {
         int type = object.getInt(EXAMPLE_TYPE_KEY);
-        return DescriptionEntry.DescriptionType.values()[type];
+        return DescriptionEntry.DescriptionType.getByValue(type);
     }
 
 }

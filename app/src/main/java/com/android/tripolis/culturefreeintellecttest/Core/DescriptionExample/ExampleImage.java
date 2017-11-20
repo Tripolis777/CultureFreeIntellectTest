@@ -27,4 +27,16 @@ public class ExampleImage extends SimpleExample {
         this.imageInfo = res.getString(res.getIdentifier(entry.textImageInfoKey, "string", packageName));
         this.image = res.getDrawable(res.getIdentifier(entry.imageKey, "drawable", packageName));
     }
+
+    public Drawable getImage() {
+        return image;
+    }
+
+    public String getImageName() {
+        return imageName;
+    }
+
+    public String getImageInfo() {
+        return imageInfo;
+    }
 }

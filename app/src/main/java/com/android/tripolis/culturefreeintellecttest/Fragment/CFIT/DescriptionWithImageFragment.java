@@ -1,6 +1,5 @@
 package com.android.tripolis.culturefreeintellecttest.Fragment.CFIT;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,9 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.tripolis.culturefreeintellecttest.Core.DescriptionExample.ExampleImage;
 import com.android.tripolis.culturefreeintellecttest.R;
-
-import org.w3c.dom.Text;
 
 /**
  * Created by tripo on 11/5/2017.
@@ -21,27 +19,19 @@ public class DescriptionWithImageFragment extends Fragment {
 
     public static final String TAG = "CIFT_DescriptionWithImageFragment";
 
-    public static class DescriptionWithImage {
-        public String imageName;
-        public String imageDescription;
-        public Drawable imageQuestion;
-        public Drawable imageAnswer;
-    }
-
-    private DescriptionWithImage descriptionWithImage;
+    private ExampleImage exampleImage;
     private boolean created = false;
 
     private TextView subtestInfoImageName;
     private TextView subtestInfoImageDescription;
-    private ImageView subtestInfoImageQuestion;
-    private ImageView subtestInfoImageAnswer;
+    private ImageView subtestInfoImage;
 
-    public static DescriptionWithImageFragment newInstance(DescriptionWithImage descriptionWithImage) {
+    public static DescriptionWithImageFragment newInstance(ExampleImage exampleImage) {
         Bundle args = new Bundle();
 
         DescriptionWithImageFragment fragment = new DescriptionWithImageFragment();
         fragment.setArguments(args);
-        fragment.setDescriptionWithImage(descriptionWithImage);
+        fragment.setExampleImage(exampleImage);
 
         return fragment;
     }
@@ -53,8 +43,7 @@ public class DescriptionWithImageFragment extends Fragment {
 
         subtestInfoImageDescription = (TextView) rootView.findViewById(R.id.subtestInfoImageDescription);
         subtestInfoImageName = (TextView) rootView.findViewById(R.id.subtestInfoImageName);
-        subtestInfoImageQuestion = (ImageView) rootView.findViewById(R.id.subtestInfoImageQuestion);
-        subtestInfoImageAnswer = (ImageView) rootView.findViewById(R.id.subtestInfoImageAnswer);
+        subtestInfoImage = (ImageView) rootView.findViewById(R.id.subtestInfoImage);
 
         created = true;
         this.init();
@@ -68,17 +57,16 @@ public class DescriptionWithImageFragment extends Fragment {
     }
 
     public void init() {
-        if (descriptionWithImage == null || !created)
+        if (exampleImage == null || !created)
             return;
 
-        subtestInfoImageName.setText(descriptionWithImage.imageName);
-        subtestInfoImageDescription.setText(descriptionWithImage.imageDescription);
-        subtestInfoImageQuestion.setImageDrawable(descriptionWithImage.imageQuestion);
-        subtestInfoImageAnswer.setImageDrawable(descriptionWithImage.imageAnswer);
+        subtestInfoImageName.setText(exampleImage.getImageName());
+        subtestInfoImageDescription.setText(exampleImage.getImageInfo());
+        subtestInfoImage.setImageDrawable(exampleImage.getImage());
     }
 
-    public void setDescriptionWithImage(DescriptionWithImage descriptionWithImage) {
-        this.descriptionWithImage = descriptionWithImage;
+    public void setExampleImage(ExampleImage exampleImage) {
+        this.exampleImage = exampleImage;
     }
 
 }

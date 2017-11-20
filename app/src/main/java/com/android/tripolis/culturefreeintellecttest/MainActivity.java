@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button startTestButton;
 
-    public static final String TEST_NAME = "CFIT";
+    public static final String TEST_NAME = "Testing_Test";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 
 import com.android.tripolis.culturefreeintellecttest.Core.DescriptionExample.Example;
 import com.android.tripolis.culturefreeintellecttest.Core.DescriptionExample.ExampleBuilder;
+import com.android.tripolis.culturefreeintellecttest.Core.DescriptionExample.ExampleImage;
 import com.android.tripolis.culturefreeintellecttest.Fragment.CFIT.DescriptionWithImageFragment;
 import com.android.tripolis.culturefreeintellecttest.Realm.Description.ExampleEntry;
 import com.android.tripolis.culturefreeintellecttest.Realm.DescriptionEntry;
@@ -61,12 +62,20 @@ public class Description {
     }
 
     public Fragment getPageFragment(int page) {
-        if (descriptionType == DescriptionEntry.DescriptionType.WITH_IMAGES) {
-            DescriptionWithImageFragment.DescriptionWithImage dwi = new DescriptionWithImageFragment.DescriptionWithImage();
-            //dwi.imageName =
+        Fragment fragment = null;
+
+        Example example = examples[page];
+        switch (example.getType()) {
+            case SIMPLE:
+                // TODO: Create SIMPLE Description type fragment
+            case WITH_IMAGES:
+                ExampleImage exampleImage = (ExampleImage) example;
+                fragment = DescriptionWithImageFragment.newInstance(exampleImage);
+            default:
+                // TODO: Create default behavior
         }
 
-        return null;
+        return fragment;
     }
 
     public int getPagesCount() {

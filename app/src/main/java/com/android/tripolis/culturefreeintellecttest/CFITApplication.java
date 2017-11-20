@@ -5,8 +5,17 @@ import android.net.Uri;
 import android.util.Log;
 
 import com.android.tripolis.culturefreeintellecttest.Realm.CFITModule;
+import com.android.tripolis.culturefreeintellecttest.Realm.Description.ExampleEntry;
+import com.android.tripolis.culturefreeintellecttest.Realm.Description.ExampleEntryImage;
+import com.android.tripolis.culturefreeintellecttest.Realm.DescriptionEntry;
+import com.android.tripolis.culturefreeintellecttest.Realm.ImageAssetEntry;
+import com.android.tripolis.culturefreeintellecttest.Realm.TestEntry;
 import com.facebook.stetho.Stetho;
 import com.uphyca.stetho_realm.RealmInspectorModulesProvider;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -26,12 +35,14 @@ public class CFITApplication extends Application {
         super.onCreate();
         Realm.init(this);
         RealmConfiguration CFITConfig = new RealmConfiguration.Builder()
-               // .name("cfit.realm")
-                .assetFile(copyBundledRealmFile(this.getResources().openRawResource(R.raw.default0), "default0.realm"))
+                .name("cfit.realm")
+               // .assetFile(copyBundledRealmFile(this.getResources().openRawResource(R.raw.default0), "default0.realm"))
                 .schemaVersion(1)
-               // .modules(new CFITModule())
+                .modules(new CFITModule())
                 .build();
         Realm.setDefaultConfiguration(CFITConfig);
+
+        initTestDatabase(Realm.getInstance(CFITConfig));
 
         Stetho.initialize(
             Stetho.newInitializerBuilder(this)
@@ -42,6 +53,60 @@ public class CFITApplication extends Application {
                             //.databaseNamePattern(Pattern.compile(".+\\.realm"))
                             //.build())
                     .build());
+    }
+
+    private void initTestDatabase(Realm realm) {
+        // Create test
+        realm.beginTransaction();
+        TestEntry testEntry = realm.createObject(TestEntry.class);
+        testEntry.setName("Testing_Test");
+        testEntry.setSubtestCount(2);
+        realm.commitTransaction();
+
+        // Create Image Asset
+        realm.beginTransaction();
+        ImageAssetEntry imageAssetEntry = realm.createObject(ImageAssetEntry.class);
+        imageAssetEntry.setResourceName("image_description1");
+        realm.commitTransaction();
+
+        String descriptionData = "";
+        try {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put(DescriptionEntry.DescriptionEntryData.FIELD_TEST_NAME_KEY, "Test test");
+            jsonObject.put(DescriptionEntry.DescriptionEntryData.FIELD_TEST_INFO_KEY, "Test INFO");
+            jsonObject.put(DescriptionEntry.DescriptionEntryData.FIELD_EXAMPLES_COUNT_KEY, 2);
+
+            JSONObject example1 = new JSONObject();
+            example1.put(ExampleEntry.EXAMPLE_TITLE_KEY, "Example One");
+            example1.put(ExampleEntry.EXAMPLE_TYPE_KEY, 2);
+            example1.put(ExampleEntryImage.EXAMPLE_IMAGE_KEY, "image_description1");
+            example1.put(ExampleEntryImage.EXAMPLE_IMAGE_NAME_KEY, "Image Example One");
+            example1.put(ExampleEntryImage.EXAMPLE_IMAGE_INFO_KEY, "Image one INFO");
+
+            JSONObject example2 = new JSONObject();
+            example2.put(ExampleEntry.EXAMPLE_TITLE_KEY, "Example Two");
+            example2.put(ExampleEntry.EXAMPLE_TYPE_KEY, 2);
+            example2.put(ExampleEntryImage.EXAMPLE_IMAGE_KEY, "image_description1");
+            example2.put(ExampleEntryImage.EXAMPLE_IMAGE_NAME_KEY, "Image Example Two");
+            example2.put(ExampleEntryImage.EXAMPLE_IMAGE_INFO_KEY, "Image two INFO");
+
+            JSONArray array = new JSONArray();
+            array.put(example1).put(example2);
+            jsonObject.put(DescriptionEntry.DescriptionEntryData.FIELD_EXAMPLES_KEY, array);
+
+            descriptionData = jsonObject.toString();
+        } catch (JSONException e) {
+            Log.e("[TEST REALM]", "Init description data fail.");
+        }
+
+
+        // Create Description
+        realm.beginTransaction();
+        DescriptionEntry descriptionEntry = realm.createObject(DescriptionEntry.class);
+        descriptionEntry.setTest(testEntry);
+        descriptionEntry.setSubtestIdx(1);
+        descriptionEntry.setDescriptionData(descriptionData);
+        realm.commitTransaction();
     }
 
     private String copyBundledRealmFile(InputStream inputStream, String outFileName) {

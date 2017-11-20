@@ -12,6 +12,7 @@ import android.widget.FrameLayout;
 import com.android.tripolis.culturefreeintellecttest.Core.Description;
 import com.android.tripolis.culturefreeintellecttest.Fragment.SubtestInfoFragment;
 import com.android.tripolis.culturefreeintellecttest.Realm.DescriptionEntry;
+import com.android.tripolis.culturefreeintellecttest.Realm.TestEntry;
 
 import java.util.ArrayList;
 
