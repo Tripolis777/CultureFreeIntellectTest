@@ -18,6 +18,7 @@ import com.android.tripolis.culturefreeintellecttest.R;
  */
 
 public class SubtestInfoFragment extends Fragment {
+    public static final String TAG = "subtest_info_fragment";
 
     private TextView subtestNameTextView;
     private TextView subtestInfoTextView;
@@ -55,7 +56,7 @@ public class SubtestInfoFragment extends Fragment {
                 this.getActivity().getSupportFragmentManager(), description);
 
         for (int i = 0; i < description.getPagesCount(); i++) {
-            exampleTabLayout.addTab(exampleTabLayout.newTab().setText(description.getTitle(i)));
+            exampleTabLayout.addTab(exampleTabLayout.newTab().setText(description.getExample(i).getTitle()));
         }
         exampleTabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 

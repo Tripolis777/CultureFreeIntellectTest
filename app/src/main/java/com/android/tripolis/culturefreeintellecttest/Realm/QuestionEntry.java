@@ -9,10 +9,11 @@ import io.realm.RealmObject;
  */
 
 public class QuestionEntry extends RealmObject {
+
     private int subtestIdx;
-    private int testNum;
     private int type;
 
+    private TestEntry test;
     private AnswerEntry answerEntry;
     private ImageAssetEntry imageAssetEntry;
 
@@ -20,8 +21,8 @@ public class QuestionEntry extends RealmObject {
         return subtestIdx;
     }
 
-    public int getTestNum() {
-        return testNum;
+    public TestEntry getTest() {
+        return test;
     }
 
     public int getType() {
@@ -40,8 +41,8 @@ public class QuestionEntry extends RealmObject {
         this.subtestIdx = subtestIdx;
     }
 
-    public void setTestNum(int testNum) {
-        this.testNum = testNum;
+    public void setTest(TestEntry test) {
+        this.test = test;
     }
 
     public void setType(int type) {

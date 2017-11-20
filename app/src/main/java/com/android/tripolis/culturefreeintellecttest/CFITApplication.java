@@ -2,6 +2,7 @@ package com.android.tripolis.culturefreeintellecttest;
 
 import android.app.Application;
 import android.net.Uri;
+import android.util.Log;
 
 import com.android.tripolis.culturefreeintellecttest.Realm.CFITModule;
 import com.facebook.stetho.Stetho;
@@ -41,7 +42,6 @@ public class CFITApplication extends Application {
                             //.databaseNamePattern(Pattern.compile(".+\\.realm"))
                             //.build())
                     .build());
-
     }
 
     private String copyBundledRealmFile(InputStream inputStream, String outFileName) {

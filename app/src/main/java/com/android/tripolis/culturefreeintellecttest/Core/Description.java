@@ -5,21 +5,24 @@ import android.content.res.Resources;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 
-import com.android.tripolis.culturefreeintellecttest.Database.Entries.DescriptionEntry;
+import com.android.tripolis.culturefreeintellecttest.Core.DescriptionExample.Example;
+import com.android.tripolis.culturefreeintellecttest.Core.DescriptionExample.ExampleBuilder;
+import com.android.tripolis.culturefreeintellecttest.Fragment.CFIT.DescriptionWithImageFragment;
+import com.android.tripolis.culturefreeintellecttest.Realm.Description.ExampleEntry;
+import com.android.tripolis.culturefreeintellecttest.Realm.DescriptionEntry;
 
 /**
  * Created by tripo on 11/4/2017.
  */
 
 public class Description {
-    public enum DescriptionType { SIMPLE, WITH_IMAGES }
 
     private final DescriptionEntry descriptionEntry;
     private final Context context;
 
-    private DescriptionType descriptionType;
+    private DescriptionEntry.DescriptionType descriptionType;
     private int pagesCount;
-    private String[] exampleTitles;
+    private Example[] examples;
 
     private String testName;
     private String testDescription;
@@ -42,26 +45,27 @@ public class Description {
 
         pagesCount = descriptionData.getExamplesCount();
 
-        exampleTitles = new String[pagesCount];
-        String[] exampleTitleKeys = descriptionData.getExamplesTitleKeys();
-        for (int i = 0; i < pagesCount; i++) {
-            exampleTitles[i] = res.getString(res.getIdentifier(exampleTitleKeys[i], "string", packageName));
+        examples = new Example[pagesCount];
+        ExampleEntry[] exampleEntries = descriptionData.getExamples();
+        for (int i = 0; i < exampleEntries.length; i++) {
+            examples[i] = ExampleBuilder.createExample(exampleEntries[i], context);
         }
     }
 
-    public void setDescriptionType(DescriptionType type) {
-        this.descriptionType = type;
-    }
-
-    public DescriptionType getDescriptionType() {
-        return descriptionType;
-    }
+//    public DescriptionEntry.DescriptionType getDescriptionType() {
+//        return descriptionEntry.getType();
+//    }
 
     public FragmentFactory<Description> getFragmentFactory() {
         return fragmentFactory;
     }
 
     public Fragment getPageFragment(int page) {
+        if (descriptionType == DescriptionEntry.DescriptionType.WITH_IMAGES) {
+            DescriptionWithImageFragment.DescriptionWithImage dwi = new DescriptionWithImageFragment.DescriptionWithImage();
+            //dwi.imageName =
+        }
+
         return null;
     }
 
@@ -69,11 +73,11 @@ public class Description {
         return pagesCount;
     }
 
-    public String getTitle(int page) {
-        if (page > exampleTitles.length)
+    public Example getExample(int page) {
+        if (page > examples.length)
             return null;
 
-        return exampleTitles[page];
+        return examples[page];
     }
 
     public String getTestName() {

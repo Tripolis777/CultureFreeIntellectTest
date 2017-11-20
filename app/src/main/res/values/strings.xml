@@ -19,4 +19,7 @@
 
     <string name="next_subtest_button">Finish</string>
     <string name="cancel_subtest">Exit</string>
+
+    <string name="empty_example_title">Empty Title</string>
+
 </resources>
