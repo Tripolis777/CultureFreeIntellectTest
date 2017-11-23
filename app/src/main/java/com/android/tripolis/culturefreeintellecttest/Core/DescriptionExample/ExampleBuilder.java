@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.android.tripolis.culturefreeintellecttest.Realm.Description.ExampleEntry;
 import com.android.tripolis.culturefreeintellecttest.Realm.Description.ExampleEntryImage;
+import com.android.tripolis.culturefreeintellecttest.Realm.Description.ExampleEntryPackage;
 
 /**
  * Created by v.karyagin on 20.11.2017.
@@ -18,10 +19,16 @@ public class ExampleBuilder {
             case SIMPLE:
                 example = new SimpleExample(entry, context);
             case WITH_IMAGES:
-                example = new ExampleImage((ExampleEntryImage) entry, context);
+                ExampleEntryImage entryImage = (ExampleEntryImage) entry;
+                example = new ExampleImage(entryImage, context);
         }
 
         return example;
+    }
+
+    public static ExamplesPackage convertExampleEntryPackage(ExampleEntryPackage exampleEntryPackage) {
+        ExamplesPackage examplesPackage = new ExamplesPackage();
+        return examplesPackage;
     }
 
 }

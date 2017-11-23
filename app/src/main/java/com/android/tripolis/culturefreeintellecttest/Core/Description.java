@@ -10,6 +10,7 @@ import com.android.tripolis.culturefreeintellecttest.Core.DescriptionExample.Exa
 import com.android.tripolis.culturefreeintellecttest.Core.DescriptionExample.ExampleImage;
 import com.android.tripolis.culturefreeintellecttest.Fragment.CFIT.DescriptionWithImageFragment;
 import com.android.tripolis.culturefreeintellecttest.Realm.Description.ExampleEntry;
+import com.android.tripolis.culturefreeintellecttest.Realm.Description.ExampleEntryPackage;
 import com.android.tripolis.culturefreeintellecttest.Realm.DescriptionEntry;
 
 /**
@@ -47,10 +48,9 @@ public class Description {
         pagesCount = descriptionData.getExamplesCount();
 
         examples = new Example[pagesCount];
-        ExampleEntry[] exampleEntries = descriptionData.getExamples();
-        for (int i = 0; i < exampleEntries.length; i++) {
-            examples[i] = ExampleBuilder.createExample(exampleEntries[i], context);
-        }
+        ExampleEntryPackage exampleEntries = descriptionData.getExamples();
+        examples = ExampleBuilder.createExample(exampleEntries, context);
+
     }
 
 //    public DescriptionEntry.DescriptionType getDescriptionType() {

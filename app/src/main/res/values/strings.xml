@@ -22,4 +22,19 @@
 
     <string name="empty_example_title">Empty Title</string>
 
+
+    <!--TEST DESCRIPTION-->
+    <string name="description1_test_name">Test test</string>
+    <string name="description1_test_info">Test INFO</string>
+
+    <!--TEST EXAMPLE 1-->
+    <string name="example1_title">Example One</string>
+    <string name="example1_image_name">Image Example One</string>
+    <string name="example1_image_info">Image one INFO</string>
+
+    <!--TEST EXAMPLE 2-->
+    <string name="example2_title">Example Two</string>
+    <string name="example2_image_name">Image Example Two</string>
+    <string name="example2_image_info">Image two INFO</string>
+
 </resources>

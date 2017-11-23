@@ -72,23 +72,23 @@ public class CFITApplication extends Application {
         String descriptionData = "";
         try {
             JSONObject jsonObject = new JSONObject();
-            jsonObject.put(DescriptionEntry.DescriptionEntryData.FIELD_TEST_NAME_KEY, "Test test");
-            jsonObject.put(DescriptionEntry.DescriptionEntryData.FIELD_TEST_INFO_KEY, "Test INFO");
+            jsonObject.put(DescriptionEntry.DescriptionEntryData.FIELD_TEST_NAME_KEY, "description1_test_name");
+            jsonObject.put(DescriptionEntry.DescriptionEntryData.FIELD_TEST_INFO_KEY, "description1_test_info");
             jsonObject.put(DescriptionEntry.DescriptionEntryData.FIELD_EXAMPLES_COUNT_KEY, 2);
 
             JSONObject example1 = new JSONObject();
-            example1.put(ExampleEntry.EXAMPLE_TITLE_KEY, "Example One");
+            example1.put(ExampleEntry.EXAMPLE_TITLE_KEY, "example1_title");
             example1.put(ExampleEntry.EXAMPLE_TYPE_KEY, 2);
             example1.put(ExampleEntryImage.EXAMPLE_IMAGE_KEY, "image_description1");
-            example1.put(ExampleEntryImage.EXAMPLE_IMAGE_NAME_KEY, "Image Example One");
-            example1.put(ExampleEntryImage.EXAMPLE_IMAGE_INFO_KEY, "Image one INFO");
+            example1.put(ExampleEntryImage.EXAMPLE_IMAGE_NAME_KEY, "example1_image_name");
+            example1.put(ExampleEntryImage.EXAMPLE_IMAGE_INFO_KEY, "example1_image_info");
 
             JSONObject example2 = new JSONObject();
-            example2.put(ExampleEntry.EXAMPLE_TITLE_KEY, "Example Two");
+            example2.put(ExampleEntry.EXAMPLE_TITLE_KEY, "example2_title");
             example2.put(ExampleEntry.EXAMPLE_TYPE_KEY, 2);
             example2.put(ExampleEntryImage.EXAMPLE_IMAGE_KEY, "image_description1");
-            example2.put(ExampleEntryImage.EXAMPLE_IMAGE_NAME_KEY, "Image Example Two");
-            example2.put(ExampleEntryImage.EXAMPLE_IMAGE_INFO_KEY, "Image two INFO");
+            example2.put(ExampleEntryImage.EXAMPLE_IMAGE_NAME_KEY, "example2_image_name");
+            example2.put(ExampleEntryImage.EXAMPLE_IMAGE_INFO_KEY, "example2_image_info");
 
             JSONArray array = new JSONArray();
             array.put(example1).put(example2);

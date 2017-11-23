@@ -13,22 +13,20 @@ import org.json.JSONObject;
 
 public class ExamleEntryBuilder {
 
-    public static ExampleEntry createExample(JSONObject object) {
-        ExampleEntry example = null;
+    public static void createExample(JSONObject object, ExampleEntryPackage examplesPackage) {
         try {
             DescriptionEntry.DescriptionType type = ExampleEntry.getType(object);
             switch (type) {
                 case SIMPLE:
-                    example = new ExampleEntry(object);
+                    examplesPackage.put(new ExampleEntry(object));
                 case WITH_IMAGES:
-                    example = new ExampleEntryImage(object);
+                    examplesPackage.put(new ExampleEntryImage(object));
                 default:
-                    example = new ExampleEntry(object);
+                    examplesPackage.put(new ExampleEntry(object));
             }
         } catch (JSONException e) {
             Log.e("[SimpleExample Builder]", "SimpleExample builder failure. Error: " + e.getMessage());
         }
-        return example;
     }
 
 }

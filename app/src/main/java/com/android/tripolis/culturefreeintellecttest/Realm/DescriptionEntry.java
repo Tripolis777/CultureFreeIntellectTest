@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.android.tripolis.culturefreeintellecttest.Realm.Description.ExamleEntryBuilder;
 import com.android.tripolis.culturefreeintellecttest.Realm.Description.ExampleEntry;
+import com.android.tripolis.culturefreeintellecttest.Realm.Description.ExampleEntryPackage;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,7 +54,7 @@ public class DescriptionEntry extends RealmObject {
         private String testInfoKey;
         private int examplesCount;
 
-        private ExampleEntry[] examples;
+        private ExampleEntryPackage examples;
 
         public DescriptionEntryData(String data) {
             this.data = data;
@@ -64,11 +65,11 @@ public class DescriptionEntry extends RealmObject {
                 testInfoKey = jsonData.getString(FIELD_TEST_INFO_KEY);
                 examplesCount = jsonData.getInt(FIELD_EXAMPLES_COUNT_KEY);
 
-                examples = new ExampleEntry[examplesCount];
+                examples = new ExampleEntryPackage();
                 JSONArray examplesTitlesArray = jsonData.getJSONArray(FIELD_EXAMPLES_KEY);
                 for (int i = 0; i < examplesTitlesArray.length(); i++) {
                     JSONObject exampleJson = examplesTitlesArray.getJSONObject(i);
-                    examples[i] = ExamleEntryBuilder.createExample(exampleJson);
+                    ExamleEntryBuilder.createExample(exampleJson, examples);
                 }
 
             } catch (JSONException e) {
@@ -89,7 +90,7 @@ public class DescriptionEntry extends RealmObject {
             return examplesCount;
         }
 
-        public ExampleEntry[] getExamples() {
+        public ExampleEntryPackage getExamples() {
             return examples;
         }
 

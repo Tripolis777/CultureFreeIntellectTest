@@ -20,7 +20,7 @@ public class ExampleEntry {
 
     public ExampleEntry(JSONObject json) throws JSONException {
         this.textTitleKey = json.getString(EXAMPLE_TITLE_KEY);
-        this.type = json.getInt(EXAMPLE_TITLE_KEY);
+        this.type = json.getInt(EXAMPLE_TYPE_KEY);
     }
 
     public DescriptionEntry.DescriptionType getType() {

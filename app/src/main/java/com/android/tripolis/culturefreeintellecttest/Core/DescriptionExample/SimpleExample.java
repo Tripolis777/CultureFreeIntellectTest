@@ -19,7 +19,8 @@ public class SimpleExample  implements Example {
         final String packageName = context.getPackageName();
 
         this.type = entry.getType();
-        this.title = res.getString(res.getIdentifier(entry.textTitleKey, "string", packageName));
+        int res_id = res.getIdentifier(entry.textTitleKey, "string", packageName);
+        this.title = res.getString(res_id);
     }
 
     @Override
