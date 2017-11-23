@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import com.android.tripolis.culturefreeintellecttest.Core.DescriptionExample.Example;
 import com.android.tripolis.culturefreeintellecttest.Core.DescriptionExample.ExampleBuilder;
 import com.android.tripolis.culturefreeintellecttest.Core.DescriptionExample.ExampleImage;
+import com.android.tripolis.culturefreeintellecttest.Core.DescriptionExample.ExamplesPackage;
 import com.android.tripolis.culturefreeintellecttest.Fragment.CFIT.DescriptionWithImageFragment;
 import com.android.tripolis.culturefreeintellecttest.Realm.Description.ExampleEntry;
 import com.android.tripolis.culturefreeintellecttest.Realm.Description.ExampleEntryPackage;
@@ -24,7 +25,7 @@ public class Description {
 
     private DescriptionEntry.DescriptionType descriptionType;
     private int pagesCount;
-    private Example[] examples;
+    private ExamplesPackage examplesPackage;
 
     private String testName;
     private String testDescription;
@@ -47,10 +48,8 @@ public class Description {
 
         pagesCount = descriptionData.getExamplesCount();
 
-        examples = new Example[pagesCount];
-        ExampleEntryPackage exampleEntries = descriptionData.getExamples();
-        examples = ExampleBuilder.createExample(exampleEntries, context);
 
+        examplesPackage = ExampleBuilder.convertExampleEntryPackage(descriptionData.getExamples(), context);
     }
 
 //    public DescriptionEntry.DescriptionType getDescriptionType() {
@@ -83,7 +82,7 @@ public class Description {
     }
 
     public Example getExample(int page) {
-        if (page > examples.length)
+        if (page > pagesCount)
             return null;
 
         return examples[page];
