@@ -58,7 +58,7 @@ public class TestActivity extends AppCompatActivity {
         fragmentManager = getSupportFragmentManager();
 
         fragmentManager.beginTransaction()
-                .add(SubtestInfoFragment.newInstance(testDescriptions.get(0)), SubtestInfoFragment.TAG)
+                .add(R.id.testFragmentPlaceholder, SubtestInfoFragment.newInstance(testDescriptions.get(0)), SubtestInfoFragment.TAG)
                 .commit();
     }
 
