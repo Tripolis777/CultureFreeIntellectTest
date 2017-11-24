@@ -3,6 +3,7 @@ package com.android.tripolis.culturefreeintellecttest.Core;
 import android.content.Context;
 import android.content.res.Resources;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
 import com.android.tripolis.culturefreeintellecttest.Core.DescriptionExample.Example;
@@ -60,15 +61,16 @@ public class Description {
         return fragmentFactory;
     }
 
+    @Nullable
     public Fragment getPageFragment(int page) {
         Fragment fragment = null;
 
-        Example example = examples[page];
-        switch (example.getType()) {
+        ExampleEntryPackage.PackageItemInfo exampleInfo = examplesPackage.getItemInfo(page);
+        switch (exampleInfo.type) {
             case SIMPLE:
                 // TODO: Create SIMPLE Description type fragment
             case WITH_IMAGES:
-                ExampleImage exampleImage = (ExampleImage) example;
+                ExampleImage exampleImage = examplesPackage.getExampleImage(exampleInfo.num);
                 fragment = DescriptionWithImageFragment.newInstance(exampleImage);
             default:
                 // TODO: Create default behavior
@@ -85,7 +87,7 @@ public class Description {
         if (page > pagesCount)
             return null;
 
-        return examples[page];
+        return examplesPackage.getExample(page);
     }
 
     public String getTestName() {
