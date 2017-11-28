@@ -36,7 +36,7 @@ public class CFITApplication extends Application {
         Realm.init(this);
         RealmConfiguration CFITConfig = new RealmConfiguration.Builder()
                 .name("cfit.realm")
-               // .assetFile(copyBundledRealmFile(this.getResources().openRawResource(R.raw.default0), "default0.realm"))
+                //.assetFile(copyBundledRealmFile(this.getResources().openRawResource(R.raw.cfit), "cfit.realm"))
                 .schemaVersion(1)
                 .modules(new CFITModule())
                 .build();
