@@ -7,6 +7,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.android.tripolis.culturefreeintellecttest.Adapter.ExamplePagerAdapter;
@@ -24,18 +25,21 @@ public class SubtestInfoFragment extends Fragment {
     private TextView subtestInfoTextView;
     private ViewPager exampleViewPager;
     private TabLayout exampleTabLayout;
+    private Button actionButton;
 
     private ExamplePagerAdapter examplePagerAdapter;
 
     private Description description;
+    private View.OnClickListener buttonListener;
 
 
-    public static SubtestInfoFragment newInstance(Description description) {
+    public static SubtestInfoFragment newInstance(Description description, View.OnClickListener buttonListener) {
         Bundle args = new Bundle();
 
         SubtestInfoFragment fragment = new SubtestInfoFragment();
         fragment.setArguments(args);
         fragment.setDescription(description);
+        fragment.setOnClickListener(buttonListener);
         return fragment;
     }
 
@@ -48,6 +52,10 @@ public class SubtestInfoFragment extends Fragment {
         subtestInfoTextView = (TextView) rootView.findViewById(R.id.subtestInfoTopText);
         exampleTabLayout = (TabLayout) rootView.findViewById(R.id.exampleTabLayout);
         exampleViewPager = (ViewPager) rootView.findViewById(R.id.examleViewPager);
+        actionButton = (Button) rootView.findViewById(R.id.subtestInfoStartTestButton);
+
+        if (buttonListener != null)
+            actionButton.setOnClickListener(buttonListener);
 
         subtestNameTextView.setText(description.getTestName());
         subtestInfoTextView.setText(description.getTestDescription());
@@ -91,4 +99,7 @@ public class SubtestInfoFragment extends Fragment {
         this.description = description;
     }
 
+    public void setOnClickListener(View.OnClickListener listener) {
+        this.buttonListener = listener;
+    }
 }

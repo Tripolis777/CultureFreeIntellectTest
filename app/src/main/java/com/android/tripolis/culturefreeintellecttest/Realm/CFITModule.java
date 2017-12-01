@@ -1,6 +1,6 @@
 package com.android.tripolis.culturefreeintellecttest.Realm;
 
-import com.android.tripolis.culturefreeintellecttest.Core.Description;
+import com.android.tripolis.culturefreeintellecttest.Core.Subtest;
 
 import io.realm.annotations.RealmModule;
 
@@ -13,6 +13,7 @@ import io.realm.annotations.RealmModule;
         DescriptionEntry.class,
         ImageAssetEntry.class,
         QuestionEntry.class,
+        Subtest.class,
         TestEntry.class
 })
 public class CFITModule {

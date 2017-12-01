@@ -1,7 +1,6 @@
 package com.android.tripolis.culturefreeintellecttest;
 
 import android.app.Application;
-import android.net.Uri;
 import android.util.Log;
 
 import com.android.tripolis.culturefreeintellecttest.Realm.CFITModule;
@@ -60,7 +59,6 @@ public class CFITApplication extends Application {
         realm.beginTransaction();
         TestEntry testEntry = realm.createObject(TestEntry.class);
         testEntry.setName("Testing_Test");
-        testEntry.setSubtestCount(2);
         realm.commitTransaction();
 
         // Create Image Asset

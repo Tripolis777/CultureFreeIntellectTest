@@ -1,5 +1,6 @@
 package com.android.tripolis.culturefreeintellecttest.Realm;
 
+import io.realm.RealmList;
 import io.realm.RealmObject;
 
 /**
@@ -9,21 +10,38 @@ import io.realm.RealmObject;
 public class TestEntry extends RealmObject {
 
     private String name;
-    private int subtestCount;
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setSubtestCount(int subtestCount) {
-        this.subtestCount = subtestCount;
-    }
+    private DescriptionEntry testDescription;
+    private RealmList<SubtestEntry> subtestList;
 
     public String getName() {
         return name;
     }
 
+    public RealmList<SubtestEntry> getSubtestList() {
+        return subtestList;
+    }
+
     public int getSubtestCount() {
-        return subtestCount;
+        return subtestList.size();
+    }
+
+    public DescriptionEntry getTestDescription() {
+        return testDescription;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSubtestList(RealmList<SubtestEntry> subtestList) {
+        this.subtestList = subtestList;
+    }
+
+    public void addSubtest(SubtestEntry subtestEntry) {
+        this.subtestList.add(subtestEntry);
+    }
+
+    public void setTestDescription(DescriptionEntry testDescription) {
+        this.testDescription = testDescription;
     }
 }

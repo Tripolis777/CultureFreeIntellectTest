@@ -1,6 +1,9 @@
 package com.android.tripolis.culturefreeintellecttest.Core;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
+
+import com.android.tripolis.culturefreeintellecttest.Realm.SubtestEntry;
 
 /**
  * Created by tripo on 11/4/2017.
@@ -12,7 +15,6 @@ public class Subtest {
         DESCRIPTION, TESTING, CONCLUSION, RESULT
     }
 
-    private int testNum;
     private int startQuestionNum;
     private int questionNum;
     private int questionsCount;
@@ -21,14 +23,14 @@ public class Subtest {
     private QuestionManager questionManager;
     private Description description;
 
+    private final SubtestEntry subtestEntry;
+    private final Context context;
     //private ImageCutter questionImage;
     //private ImageCutter answerImage;
 
-    public Subtest(@NonNull QuestionManager questionManager, @NonNull Description description) {
-        this.questionManager = questionManager;
-        this.description = description;
-
-
+    public Subtest(@NonNull final Context context, @NonNull SubtestEntry subtestEntry) {
+        this.subtestEntry = subtestEntry;
+        this.context = context;
     }
 
     public QuestionManager getQuestionManager() {
@@ -44,11 +46,13 @@ public class Subtest {
     }
 
     public Description getDescription() {
+        if (description == null)
+            description = new Description(subtestEntry.getSubtestDesctiprion(), context);
         return description;
     }
 
     public int getTestNum() {
-        return testNum;
+        return subtestEntry.getIndex();
     }
 
     public int getQuestionsCount() {
