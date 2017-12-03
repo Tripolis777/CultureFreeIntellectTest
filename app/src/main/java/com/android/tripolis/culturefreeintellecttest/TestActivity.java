@@ -14,6 +14,7 @@ import android.widget.FrameLayout;
 import com.android.tripolis.culturefreeintellecttest.Core.Description;
 import com.android.tripolis.culturefreeintellecttest.Core.SubtestManager;
 import com.android.tripolis.culturefreeintellecttest.Core.Test;
+import com.android.tripolis.culturefreeintellecttest.Fragment.CFITFragment;
 import com.android.tripolis.culturefreeintellecttest.Fragment.SubtestInfoFragment;
 import com.android.tripolis.culturefreeintellecttest.Realm.DescriptionEntry;
 import com.android.tripolis.culturefreeintellecttest.Realm.TestEntry;
@@ -57,9 +58,9 @@ public class TestActivity extends AppCompatActivity {
         fragmentPlaceholder = (FrameLayout) findViewById(R.id.testFragmentPlaceholder);
         fragmentManager = getSupportFragmentManager();
 
-        Fragment startFragment = test.getStartFragment();
+        CFITFragment startFragment = test.getStartFragment();
         fragmentManager.beginTransaction()
-                .add(R.id.testFragmentPlaceholder, startFragment, startFragment.getTag())
+                .add(R.id.testFragmentPlaceholder, startFragment, startFragment.getFragmentTag())
                 .commit();
     }
 

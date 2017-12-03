@@ -13,7 +13,7 @@ import io.realm.annotations.RealmModule;
         DescriptionEntry.class,
         ImageAssetEntry.class,
         QuestionEntry.class,
-        Subtest.class,
+        SubtestEntry.class,
         TestEntry.class
 })
 public class CFITModule {

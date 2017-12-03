@@ -55,12 +55,6 @@ public class CFITApplication extends Application {
     }
 
     private void initTestDatabase(Realm realm) {
-        // Create test
-        realm.beginTransaction();
-        TestEntry testEntry = realm.createObject(TestEntry.class);
-        testEntry.setName("Testing_Test");
-        realm.commitTransaction();
-
         // Create Image Asset
         realm.beginTransaction();
         ImageAssetEntry imageAssetEntry = realm.createObject(ImageAssetEntry.class);
@@ -101,9 +95,17 @@ public class CFITApplication extends Application {
         // Create Description
         realm.beginTransaction();
         DescriptionEntry descriptionEntry = realm.createObject(DescriptionEntry.class);
-        descriptionEntry.setTest(testEntry);
+        //descriptionEntry.setTest(testEntry);
         descriptionEntry.setSubtestIdx(1);
         descriptionEntry.setDescriptionData(descriptionData);
+        realm.commitTransaction();
+
+
+        // Create test
+        realm.beginTransaction();
+        TestEntry testEntry = realm.createObject(TestEntry.class);
+        testEntry.setName("Testing_Test");
+        testEntry.setTestDescription(descriptionEntry);
         realm.commitTransaction();
     }
 

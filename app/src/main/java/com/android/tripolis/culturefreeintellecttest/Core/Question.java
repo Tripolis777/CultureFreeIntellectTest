@@ -1,7 +1,7 @@
 package com.android.tripolis.culturefreeintellecttest.Core;
 
-import com.android.tripolis.culturefreeintellecttest.Database.Entries.QuestionEntry;
 import com.android.tripolis.culturefreeintellecttest.Core.Tools.ImageCutter;
+import com.android.tripolis.culturefreeintellecttest.Realm.QuestionEntry;
 
 /**
  * Created by tripo on 11/4/2017.

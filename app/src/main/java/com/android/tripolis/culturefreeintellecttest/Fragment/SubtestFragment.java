@@ -20,7 +20,7 @@ import com.android.tripolis.culturefreeintellecttest.R;
  * Created by tripo on 11/4/2017.
  */
 
-public class SubtestFragment extends Fragment {
+public class SubtestFragment extends CFITFragment {
 
     public static final String TAG = "subtest_fragment";
 

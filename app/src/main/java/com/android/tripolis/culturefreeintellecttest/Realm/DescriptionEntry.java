@@ -105,7 +105,7 @@ public class DescriptionEntry extends RealmObject {
     private String dataString;
    // private int type;
 
-    private TestEntry test;
+    //private TestEntry test;
 
     @Ignore
     private DescriptionEntryData data;
@@ -135,13 +135,13 @@ public class DescriptionEntry extends RealmObject {
         return subtestIdx;
     }
 
-    public void setTest(TestEntry test) {
-        this.test = test;
-    }
-
-    public TestEntry getTest() {
-        return test;
-    }
+//    public void setTest(TestEntry test) {
+//        this.test = test;
+//    }
+//
+//    public TestEntry getTest() {
+//        return test;
+//    }
 
 //    public void setType(DescriptionType type) {
 //        this.type = type.getValue();
