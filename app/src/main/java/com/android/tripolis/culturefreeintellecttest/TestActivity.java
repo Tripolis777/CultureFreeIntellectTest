@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -14,6 +15,7 @@ import android.widget.FrameLayout;
 import com.android.tripolis.culturefreeintellecttest.Core.Description;
 import com.android.tripolis.culturefreeintellecttest.Core.SubtestManager;
 import com.android.tripolis.culturefreeintellecttest.Core.Test;
+import com.android.tripolis.culturefreeintellecttest.Core.TestListener;
 import com.android.tripolis.culturefreeintellecttest.Fragment.CFITFragment;
 import com.android.tripolis.culturefreeintellecttest.Fragment.SubtestInfoFragment;
 import com.android.tripolis.culturefreeintellecttest.Realm.DescriptionEntry;
@@ -49,7 +51,7 @@ public class TestActivity extends AppCompatActivity {
         String testName = intent.getStringExtra(EXTRA_TEST_NAME);
 
         final Realm realm = Realm.getDefaultInstance();
-        TestEntry testEntry = realm.where(TestEntry.class)
+        final TestEntry testEntry = realm.where(TestEntry.class)
                 .equalTo("name", testName)
                 .findFirst();
 
@@ -58,10 +60,36 @@ public class TestActivity extends AppCompatActivity {
         fragmentPlaceholder = (FrameLayout) findViewById(R.id.testFragmentPlaceholder);
         fragmentManager = getSupportFragmentManager();
 
-        CFITFragment startFragment = test.getStartFragment();
-        fragmentManager.beginTransaction()
-                .add(R.id.testFragmentPlaceholder, startFragment, startFragment.getFragmentTag())
+        test.setTestListener(new TestListener() {
+            @Override
+            public void onFragmentCreated(CFITFragment fragment) {
+                fragmentManager.beginTransaction()
+                .replace(R.id.testFragmentPlaceholder, fragment, fragment.getFragmentTag())
+                .addToBackStack(fragment.getFragmentTag())
                 .commit();
+            }
+
+            @Override
+            public void onTestStart() {
+                Log.i("[TestActivity]", "Test " + testEntry.getName() + " started.");
+            }
+
+            @Override
+            public void onSubtestStart() {
+                Log.i("[TestActivity]", "Test " + testEntry.getName() + " subtest started.");
+            }
+
+            @Override
+            public void onTestCancel() {
+                Log.i("[TestActivity]", "Test " + testEntry.getName() + " canceled.");
+            }
+
+            @Override
+            public void onTestFinish() {
+                Log.i("[TestActivity]", "Test " + testEntry.getName() + " finished.");
+            }
+        });
+        test.start();
     }
 
 //    @Override

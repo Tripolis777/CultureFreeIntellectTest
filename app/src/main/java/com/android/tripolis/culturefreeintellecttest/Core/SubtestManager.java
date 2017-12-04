@@ -21,6 +21,9 @@ public class SubtestManager {
         void onError();
     }
 
+    private static final String SUBTEST_DESCRIPTION_TAG_TEMPLATE = "subtest_%d_description";
+    private static final String SUBTEST_QIESTIONS_TAG_TEMPLATE = "subtest_%d_questions";
+
     private final Context context;
     private String subtestIdent;
 
@@ -52,6 +55,14 @@ public class SubtestManager {
 
     public void onDestroy() {
 
+    }
+
+    public String getSubtestDescriptionTag(int index) {
+        return String.format(SUBTEST_DESCRIPTION_TAG_TEMPLATE, index);
+    }
+
+    public String getSubtestQuestionTag(int index) {
+        return String.format(SUBTEST_QIESTIONS_TAG_TEMPLATE, index);
     }
 
     private void init() {

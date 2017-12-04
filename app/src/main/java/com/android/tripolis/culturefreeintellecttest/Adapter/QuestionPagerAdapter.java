@@ -21,7 +21,7 @@ public class QuestionPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return questionManager.getFragmentFactory().createFragment(questionManager.getQuestion(position));
+        return questionManager.getQuestion(position).getQuestionFragment();
     }
 
     @Override

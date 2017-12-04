@@ -2,7 +2,11 @@ package com.android.tripolis.culturefreeintellecttest.Core;
 
 import android.util.Log;
 
+import com.android.tripolis.culturefreeintellecttest.Realm.QuestionEntry;
+
 import java.util.ArrayList;
+
+import io.realm.RealmList;
 
 /**
  * Created by tripo on 11/4/2017.
@@ -15,13 +19,17 @@ public class QuestionManager {
 
     private int questionsCount;
 
-    public QuestionManager(FragmentFactory<Question> fragmentFactory) {
-        this.fragmentFactory = fragmentFactory;
+    public QuestionManager(RealmList<QuestionEntry> questionEntries) {
+        questions = new ArrayList<>();
+
+        for (QuestionEntry entry : questionEntries) {
+            questions.add(new Question(entry));
+        }
     }
 
-    public FragmentFactory<Question> getFragmentFactory() {
-        return fragmentFactory;
-    }
+//    public FragmentFactory<Question> getFragmentFactory() {
+//        return fragmentFactory;
+//    }
 
     public Question getQuestion(int questionNum) {
         if (questionNum > questions.size()) {

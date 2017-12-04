@@ -3,7 +3,11 @@ package com.android.tripolis.culturefreeintellecttest.Core;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import com.android.tripolis.culturefreeintellecttest.Realm.QuestionEntry;
 import com.android.tripolis.culturefreeintellecttest.Realm.SubtestEntry;
+
+import io.realm.Realm;
+import io.realm.RealmList;
 
 /**
  * Created by tripo on 11/4/2017.
@@ -34,12 +38,14 @@ public class Subtest {
     }
 
     public QuestionManager getQuestionManager() {
+        if (questionManager == null)
+            questionManager = new QuestionManager(subtestEntry.getQuestionsList());
         return questionManager;
     }
 
-    public FragmentFactory getQuestionFragmentFactory() {
-        return questionManager.getFragmentFactory();
-    }
+//    public FragmentFactory getQuestionFragmentFactory() {
+//        return questionManager.getFragmentFactory();
+//    }
 
     public void setState(SubtestState state) {
         this.state = state;

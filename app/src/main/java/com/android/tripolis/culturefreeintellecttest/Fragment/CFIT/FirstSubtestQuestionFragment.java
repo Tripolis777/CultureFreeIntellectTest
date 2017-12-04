@@ -8,13 +8,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.android.tripolis.culturefreeintellecttest.Core.Question;
+import com.android.tripolis.culturefreeintellecttest.Fragment.CFITFragment;
 import com.android.tripolis.culturefreeintellecttest.R;
 
 /**
  * Created by tripo on 11/5/2017.
  */
 
-public class FirstSubtestQuestionFragment extends Fragment {
+public class FirstSubtestQuestionFragment extends CFITFragment {
 
     public static final String TAG = "CIFT_FirstSubtestQuestionFragment";
 

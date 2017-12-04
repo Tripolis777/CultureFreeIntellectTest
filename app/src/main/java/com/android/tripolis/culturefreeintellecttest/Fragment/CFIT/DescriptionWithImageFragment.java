@@ -9,13 +9,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.tripolis.culturefreeintellecttest.Core.DescriptionExample.ExampleImage;
+import com.android.tripolis.culturefreeintellecttest.Fragment.CFITFragment;
 import com.android.tripolis.culturefreeintellecttest.R;
 
 /**
  * Created by tripo on 11/5/2017.
  */
 
-public class DescriptionWithImageFragment extends Fragment {
+public class DescriptionWithImageFragment extends CFITFragment {
 
     public static final String TAG = "CIFT_DescriptionWithImageFragment";
 

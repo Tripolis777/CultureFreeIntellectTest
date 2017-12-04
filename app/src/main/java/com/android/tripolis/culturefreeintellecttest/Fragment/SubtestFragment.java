@@ -27,7 +27,6 @@ public class SubtestFragment extends CFITFragment {
 //    private FrameLayout fragmentPlaceholder;
     private ViewPager viewPager;
     private FragmentManager fragmentManager;
-    private DescriptionPagerAdapter descriptionPagerAdapter;
     private QuestionPagerAdapter questionPagerAdapter;
 
 
@@ -88,12 +87,12 @@ public class SubtestFragment extends CFITFragment {
         View rootView = inflater.inflate(R.layout.subtest_fragment, container, false);
 
         fragmentManager = this.getActivity().getSupportFragmentManager();
-        descriptionPagerAdapter = new DescriptionPagerAdapter(fragmentManager, subtest.getDescription(), new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                viewPager.setAdapter(questionPagerAdapter);
-            }
-        });
+//        descriptionPagerAdapter = new DescriptionPagerAdapter(fragmentManager, subtest.getDescription(), new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                viewPager.setAdapter(questionPagerAdapter);
+//            }
+//        });
         questionPagerAdapter = new QuestionPagerAdapter(fragmentManager, subtest.getQuestionManager());
 
 //        if (savedInstanceState == null) {
@@ -104,12 +103,12 @@ public class SubtestFragment extends CFITFragment {
 //        }
 
         nextSubtestButton = (Button) rootView.findViewById(R.id.finishSubtestButton);
-       cancelSubtestButton = (Button) rootView.findViewById(R.id.cancelSubtestButton);
+        cancelSubtestButton = (Button) rootView.findViewById(R.id.cancelSubtestButton);
         viewPager = (ViewPager) rootView.findViewById(R.id.subtestFragmentPlaceholder);
         subtestTime = (TextView) rootView.findViewById(R.id.subtestTimeTextView);
         subtestProgressBar = (ProgressBar) rootView.findViewById(R.id.subtestProgressBar);
 
-        viewPager.setAdapter(descriptionPagerAdapter);
+        viewPager.setAdapter(questionPagerAdapter);
 
         //nextButton.setOnClickListener(new NextButtonClickListener());
         //backButton.setOnClickListener(new BackButtonClickListener());

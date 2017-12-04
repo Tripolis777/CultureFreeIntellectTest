@@ -3,11 +3,15 @@ package com.android.tripolis.culturefreeintellecttest;
 import android.app.Application;
 import android.util.Log;
 
+import com.android.tripolis.culturefreeintellecttest.Core.Question;
+import com.android.tripolis.culturefreeintellecttest.Realm.AnswerEntry;
 import com.android.tripolis.culturefreeintellecttest.Realm.CFITModule;
 import com.android.tripolis.culturefreeintellecttest.Realm.Description.ExampleEntry;
 import com.android.tripolis.culturefreeintellecttest.Realm.Description.ExampleEntryImage;
 import com.android.tripolis.culturefreeintellecttest.Realm.DescriptionEntry;
 import com.android.tripolis.culturefreeintellecttest.Realm.ImageAssetEntry;
+import com.android.tripolis.culturefreeintellecttest.Realm.QuestionEntry;
+import com.android.tripolis.culturefreeintellecttest.Realm.SubtestEntry;
 import com.android.tripolis.culturefreeintellecttest.Realm.TestEntry;
 import com.facebook.stetho.Stetho;
 import com.uphyca.stetho_realm.RealmInspectorModulesProvider;
@@ -23,6 +27,7 @@ import java.io.InputStream;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
+import io.realm.RealmList;
 
 /**
  * Created by tripo on 11/14/2017.
@@ -106,6 +111,33 @@ public class CFITApplication extends Application {
         TestEntry testEntry = realm.createObject(TestEntry.class);
         testEntry.setName("Testing_Test");
         testEntry.setTestDescription(descriptionEntry);
+        realm.commitTransaction();
+
+        realm.beginTransaction();
+        AnswerEntry answerEntry = realm.createObject(AnswerEntry.class);
+        answerEntry.setImageAssetEntry(imageAssetEntry);
+        answerEntry.setWeight(100);
+        answerEntry.setType(1);
+        realm.commitTransaction();
+
+        realm.beginTransaction();
+        QuestionEntry questionEntry = realm.createObject(QuestionEntry.class);
+        questionEntry.setType(1);
+        questionEntry.setTest(testEntry);
+        questionEntry.setSubtestIdx(1);
+        questionEntry.setAnswerEntry(answerEntry);
+        questionEntry.setImageAssetEntry(imageAssetEntry);
+        realm.commitTransaction();
+
+        realm.beginTransaction();
+        SubtestEntry subtestEntry = realm.createObject(SubtestEntry.class);
+        subtestEntry.setIndex(1);
+        subtestEntry.setQuestionsList(new RealmList<QuestionEntry>(questionEntry));
+        subtestEntry.setSubtestDesctiprion(descriptionEntry);
+        realm.commitTransaction();
+
+        realm.beginTransaction();
+        testEntry.setSubtestList(new RealmList<SubtestEntry>(subtestEntry));
         realm.commitTransaction();
     }
 
