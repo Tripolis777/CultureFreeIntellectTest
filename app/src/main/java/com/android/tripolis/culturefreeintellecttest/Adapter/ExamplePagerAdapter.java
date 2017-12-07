@@ -3,6 +3,7 @@ package com.android.tripolis.culturefreeintellecttest.Adapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.android.tripolis.culturefreeintellecttest.Core.Description;
 
@@ -10,7 +11,7 @@ import com.android.tripolis.culturefreeintellecttest.Core.Description;
  * Created by tripo on 11/5/2017.
  */
 
-public class ExamplePagerAdapter extends FragmentPagerAdapter {
+public class ExamplePagerAdapter extends FragmentStatePagerAdapter {
     private final Description description;
 
     public ExamplePagerAdapter(FragmentManager fm, Description description) {

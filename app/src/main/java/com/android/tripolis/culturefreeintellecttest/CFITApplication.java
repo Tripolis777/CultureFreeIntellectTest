@@ -1,6 +1,7 @@
 package com.android.tripolis.culturefreeintellecttest;
 
 import android.app.Application;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.android.tripolis.culturefreeintellecttest.Core.Question;
@@ -34,6 +35,9 @@ import io.realm.RealmList;
  */
 
 public class CFITApplication extends Application {
+
+    private static final String PREFERENSE_NAME = "application_prefs";
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -46,7 +50,16 @@ public class CFITApplication extends Application {
                 .build();
         Realm.setDefaultConfiguration(CFITConfig);
 
-        initTestDatabase(Realm.getInstance(CFITConfig));
+        SharedPreferences settings = getSharedPreferences(PREFERENSE_NAME, 0);
+        boolean firstStartup = settings.getBoolean("first_startup", true);
+
+        if (firstStartup) {
+            initTestDatabase(Realm.getInstance(CFITConfig));
+
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putBoolean("first_startup", false);
+            editor.commit();
+        }
 
         Stetho.initialize(
             Stetho.newInitializerBuilder(this)
@@ -96,7 +109,6 @@ public class CFITApplication extends Application {
             Log.e("[TEST REALM]", "Init description data fail.");
         }
 
-
         // Create Description
         realm.beginTransaction();
         DescriptionEntry descriptionEntry = realm.createObject(DescriptionEntry.class);
@@ -105,6 +117,44 @@ public class CFITApplication extends Application {
         descriptionEntry.setDescriptionData(descriptionData);
         realm.commitTransaction();
 
+
+        descriptionData = "";
+        try {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put(DescriptionEntry.DescriptionEntryData.FIELD_TEST_NAME_KEY, "description1_subtest_name");
+            jsonObject.put(DescriptionEntry.DescriptionEntryData.FIELD_TEST_INFO_KEY, "description1_subtest_info");
+            jsonObject.put(DescriptionEntry.DescriptionEntryData.FIELD_EXAMPLES_COUNT_KEY, 2);
+
+            JSONObject example1 = new JSONObject();
+            example1.put(ExampleEntry.EXAMPLE_TITLE_KEY, "subtest_example1_title");
+            example1.put(ExampleEntry.EXAMPLE_TYPE_KEY, 2);
+            example1.put(ExampleEntryImage.EXAMPLE_IMAGE_KEY, "image_description2");
+            example1.put(ExampleEntryImage.EXAMPLE_IMAGE_NAME_KEY, "subtest_example1_image_name");
+            example1.put(ExampleEntryImage.EXAMPLE_IMAGE_INFO_KEY, "subtest_example1_image_info");
+
+            JSONObject example2 = new JSONObject();
+            example2.put(ExampleEntry.EXAMPLE_TITLE_KEY, "subtest_example2_title");
+            example2.put(ExampleEntry.EXAMPLE_TYPE_KEY, 2);
+            example2.put(ExampleEntryImage.EXAMPLE_IMAGE_KEY, "image_description2");
+            example2.put(ExampleEntryImage.EXAMPLE_IMAGE_NAME_KEY, "subtest_example2_image_name");
+            example2.put(ExampleEntryImage.EXAMPLE_IMAGE_INFO_KEY, "subtest_example2_image_info");
+
+            JSONArray array = new JSONArray();
+            array.put(example1).put(example2);
+            jsonObject.put(DescriptionEntry.DescriptionEntryData.FIELD_EXAMPLES_KEY, array);
+
+            descriptionData = jsonObject.toString();
+        } catch (JSONException e) {
+            Log.e("[TEST REALM]", "Init description data fail.");
+        }
+
+
+        realm.beginTransaction();
+        DescriptionEntry descriptionEntry2 = realm.createObject(DescriptionEntry.class);
+        //descriptionEntry.setTest(testEntry);
+        descriptionEntry2.setSubtestIdx(1);
+        descriptionEntry2.setDescriptionData(descriptionData);
+        realm.commitTransaction();
 
         // Create test
         realm.beginTransaction();
@@ -133,7 +183,7 @@ public class CFITApplication extends Application {
         SubtestEntry subtestEntry = realm.createObject(SubtestEntry.class);
         subtestEntry.setIndex(1);
         subtestEntry.setQuestionsList(new RealmList<QuestionEntry>(questionEntry));
-        subtestEntry.setSubtestDesctiprion(descriptionEntry);
+        subtestEntry.setSubtestDesctiprion(descriptionEntry2);
         realm.commitTransaction();
 
         realm.beginTransaction();

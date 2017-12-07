@@ -37,4 +37,18 @@
     <string name="example2_image_name">Image Example Two</string>
     <string name="example2_image_info">Image two INFO</string>
 
+    <!--TEST SUBTEST DESCRIPTION-->
+    <string name="description1_subtest_name">Subtest Name</string>
+    <string name="description1_subtest_info">Subtest info text</string>
+
+    <!--TEST SUBTEST EXAMPLE 1-->
+    <string name="subtest_example1_title">Subtest Example One</string>
+    <string name="subtest_example1_image_name">Subtest Image Example One</string>
+    <string name="subtest_example1_image_info">Subtest Image One info text</string>
+
+    <!--TEST SUBTEST EXAMPLE 2-->
+    <string name="subtest_example2_title">Subtest Example Two</string>
+    <string name="subtest_example2_image_name">Subtest Image Example Two</string>
+    <string name="subtest_example2_image_info">Subtest Image Two info text</string>
+
 </resources>

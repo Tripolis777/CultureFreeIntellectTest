@@ -50,7 +50,7 @@ public class Test {
         if (isHaveTestDescriprion())
             testListener.onFragmentCreated(getTestDescriptionFragment());
         else {
-            startSubtest(currentSubtestNum);
+            startSubtest(0);
         }
 
     }
@@ -62,7 +62,7 @@ public class Test {
         CFITFragment fragment = SubtestInfoFragment.newInstance(description, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startSubtest(currentSubtestNum);
+                startSubtest(0);
             }
         });
 
