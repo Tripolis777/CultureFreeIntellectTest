@@ -45,7 +45,7 @@ public class QuestionManager {
     }
 
     public int getQuestionsCount() {
-        return questionsCount;
+        return questions.size();
     }
 
     public void setQuestions(ArrayList<Question> questions) {

@@ -163,6 +163,8 @@ public class CFITApplication extends Application {
         testEntry.setTestDescription(descriptionEntry);
         realm.commitTransaction();
 
+
+        // Create Answer
         realm.beginTransaction();
         AnswerEntry answerEntry = realm.createObject(AnswerEntry.class);
         answerEntry.setImageAssetEntry(imageAssetEntry);
@@ -170,6 +172,8 @@ public class CFITApplication extends Application {
         answerEntry.setType(1);
         realm.commitTransaction();
 
+
+        // Create Question 1
         realm.beginTransaction();
         QuestionEntry questionEntry = realm.createObject(QuestionEntry.class);
         questionEntry.setType(1);
@@ -179,10 +183,21 @@ public class CFITApplication extends Application {
         questionEntry.setImageAssetEntry(imageAssetEntry);
         realm.commitTransaction();
 
+        //Create Question 2
+        realm.beginTransaction();
+        QuestionEntry questionEntry2 = realm.createObject(QuestionEntry.class);
+        questionEntry2.setType(1);
+        questionEntry2.setTest(testEntry);
+        questionEntry2.setSubtestIdx(1);
+        questionEntry2.setAnswerEntry(answerEntry);
+        questionEntry2.setImageAssetEntry(imageAssetEntry);
+        realm.commitTransaction();
+
+        // Create Subtest
         realm.beginTransaction();
         SubtestEntry subtestEntry = realm.createObject(SubtestEntry.class);
         subtestEntry.setIndex(1);
-        subtestEntry.setQuestionsList(new RealmList<QuestionEntry>(questionEntry));
+        subtestEntry.setQuestionsList(new RealmList<QuestionEntry>(questionEntry, questionEntry2));
         subtestEntry.setSubtestDesctiprion(descriptionEntry2);
         realm.commitTransaction();
 

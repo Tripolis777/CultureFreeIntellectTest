@@ -54,7 +54,7 @@
         app:layout_constraintTop_toBottomOf="@+id/subtestFirstImage2"
         app:srcCompat="@drawable/question" />
 
-    <ImageView
+    <com.android.tripolis.culturefreeintellecttest.View.SelectableImageView
         android:id="@+id/subtestFirstImageAnswer3"
         android:layout_width="96dp"
         android:layout_height="96dp"
@@ -66,7 +66,7 @@
         app:layout_constraintTop_toTopOf="@+id/subtestFirstImageAnswer2"
         app:srcCompat="@color/start_button_enabled" />
 
-    <ImageView
+    <com.android.tripolis.culturefreeintellecttest.View.SelectableImageView
         android:id="@+id/subtestFirstImageAnswer1"
         android:layout_width="96dp"
         android:layout_height="96dp"
@@ -78,7 +78,7 @@
         app:layout_constraintTop_toTopOf="@+id/subtestFirstImageAnswer2"
         app:srcCompat="@color/start_button_enabled" />
 
-    <ImageView
+    <com.android.tripolis.culturefreeintellecttest.View.SelectableImageView
         android:id="@+id/subtestFirstImageAnswer5"
         android:layout_width="96dp"
         android:layout_height="96dp"
@@ -88,7 +88,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="8dp" />
 
-    <ImageView
+    <com.android.tripolis.culturefreeintellecttest.View.SelectableImageView
         android:id="@+id/subtestFirstImageAnswer4"
         android:layout_width="96dp"
         android:layout_height="96dp"
@@ -101,7 +101,7 @@
         android:layout_marginBottom="8dp"
         app:layout_constraintHorizontal_bias="0.0" />
 
-    <ImageView
+    <com.android.tripolis.culturefreeintellecttest.View.SelectableImageView
         android:id="@+id/subtestFirstImageAnswer2"
         android:layout_width="96dp"
         android:layout_height="96dp"

@@ -1,7 +1,12 @@
 package com.android.tripolis.culturefreeintellecttest.Fragment.CFIT;
 
+import android.content.res.Resources;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +15,7 @@ import android.widget.ImageView;
 import com.android.tripolis.culturefreeintellecttest.Core.Question;
 import com.android.tripolis.culturefreeintellecttest.Fragment.CFITFragment;
 import com.android.tripolis.culturefreeintellecttest.R;
+import com.android.tripolis.culturefreeintellecttest.View.SelectableImageView;
 
 /**
  * Created by tripo on 11/5/2017.
@@ -26,7 +32,9 @@ public class FirstSubtestQuestionFragment extends CFITFragment {
     private Question question;
 
     private ImageView questionImageViews[];
-    private ImageView answerImageViews[];
+    private SelectableImageView answerImageViews[];
+
+    private boolean answerSelected = false;
 
     public static FirstSubtestQuestionFragment newInstance(Question question) {
         Bundle args = new Bundle();
@@ -49,12 +57,44 @@ public class FirstSubtestQuestionFragment extends CFITFragment {
         questionImageViews[1] = (ImageView) rootView.findViewById(R.id.subtestFirstImage2);
         questionImageViews[2] = (ImageView) rootView.findViewById(R.id.subtestFirstImage3);
 
-        answerImageViews = new ImageView[ANSWER_IMAGE_COUNT];
-        answerImageViews[0] = (ImageView) rootView.findViewById(R.id.subtestFirstImageAnswer1);
-        answerImageViews[1] = (ImageView) rootView.findViewById(R.id.subtestFirstImageAnswer2);
-        answerImageViews[2] = (ImageView) rootView.findViewById(R.id.subtestFirstImageAnswer3);
-        answerImageViews[3] = (ImageView) rootView.findViewById(R.id.subtestFirstImageAnswer4);
-        answerImageViews[4] = (ImageView) rootView.findViewById(R.id.subtestFirstImageAnswer5);
+        answerImageViews = new SelectableImageView[ANSWER_IMAGE_COUNT];
+        answerImageViews[0] = (SelectableImageView) rootView.findViewById(R.id.subtestFirstImageAnswer1);
+        answerImageViews[1] = (SelectableImageView) rootView.findViewById(R.id.subtestFirstImageAnswer2);
+        answerImageViews[2] = (SelectableImageView) rootView.findViewById(R.id.subtestFirstImageAnswer3);
+        answerImageViews[3] = (SelectableImageView) rootView.findViewById(R.id.subtestFirstImageAnswer4);
+        answerImageViews[4] = (SelectableImageView) rootView.findViewById(R.id.subtestFirstImageAnswer5);
+
+        final Resources res = getResources();
+        Drawable questionDrawable = res.getDrawable(R.drawable.question);
+
+
+        for (ImageView image : questionImageViews) {
+            image.setImageDrawable(questionDrawable);
+        }
+
+        for (final SelectableImageView image : answerImageViews) {
+            image.setImageDrawable(questionDrawable);;
+            image.setSelectResource(R.drawable.active_answer_border);
+            image.setSelectListener(new SelectableImageView.OnImageSelectListener() {
+                @Override
+                public void onSelect(View v) {
+                    answerSelected = true;
+                    for (SelectableImageView image : answerImageViews) {
+                        if (image.equals(v)) continue;
+                        image.setSelectEnabled(false);
+                    }
+                }
+
+                @Override
+                public void onUnselect(View v) {
+                    answerSelected = false;
+                    for (SelectableImageView image : answerImageViews) {
+                        if (image.equals(v)) continue;
+                        image.setSelectEnabled(true);
+                    }
+                }
+            });
+        }
 
         return rootView;
     }

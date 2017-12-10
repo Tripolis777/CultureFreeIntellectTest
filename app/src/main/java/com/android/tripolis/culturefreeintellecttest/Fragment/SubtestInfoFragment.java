@@ -13,10 +13,13 @@ import android.widget.TextView;
 import com.android.tripolis.culturefreeintellecttest.Adapter.ExamplePagerAdapter;
 import com.android.tripolis.culturefreeintellecttest.Core.Description;
 import com.android.tripolis.culturefreeintellecttest.R;
+import com.android.tripolis.culturefreeintellecttest.Transformer.ZoomOutPageTransformer;
 
 /**
  * Created by tripo on 11/5/2017.
  */
+
+//TODO add saved instance state. Return to fragment crash examples Image Views
 
 public class SubtestInfoFragment extends CFITFragment {
     public static final String TAG = "subtest_info_fragment";
@@ -69,6 +72,7 @@ public class SubtestInfoFragment extends CFITFragment {
         exampleTabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         exampleViewPager.setAdapter(examplePagerAdapter);
+        exampleViewPager.setPageTransformer(true, new ZoomOutPageTransformer());
         exampleViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(exampleTabLayout));
         exampleTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

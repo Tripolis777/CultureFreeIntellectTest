@@ -3,6 +3,7 @@ package com.android.tripolis.culturefreeintellecttest.Adapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.android.tripolis.culturefreeintellecttest.Core.QuestionManager;
 
@@ -10,7 +11,7 @@ import com.android.tripolis.culturefreeintellecttest.Core.QuestionManager;
  * Created by tripo on 11/4/2017.
  */
 
-public class QuestionPagerAdapter extends FragmentPagerAdapter {
+public class QuestionPagerAdapter extends FragmentStatePagerAdapter {
 
     private final QuestionManager questionManager;
 
@@ -26,6 +27,7 @@ public class QuestionPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
+
         return questionManager.getQuestionsCount();
     }
 

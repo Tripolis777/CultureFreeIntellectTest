@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -34,6 +35,8 @@ public class TestActivity extends AppCompatActivity {
 
     public static final String EXTRA_TEST_NAME = "extra_test_name";
 
+    private ArrayList<CFITFragment> fragmentsList;
+
     private FrameLayout fragmentPlaceholder;
     private FragmentManager fragmentManager;
 
@@ -43,6 +46,8 @@ public class TestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
+
+        fragmentsList = new ArrayList<>();
 
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
@@ -63,6 +68,8 @@ public class TestActivity extends AppCompatActivity {
         test.setTestListener(new TestListener() {
             @Override
             public void onFragmentCreated(CFITFragment fragment) {
+                fragmentsList.add(fragment);
+
                 fragmentManager.beginTransaction()
                 .replace(R.id.testFragmentPlaceholder, fragment, fragment.getFragmentTag())
                 .addToBackStack(fragment.getFragmentTag())
@@ -77,6 +84,16 @@ public class TestActivity extends AppCompatActivity {
             @Override
             public void onSubtestStart() {
                 Log.i("[TestActivity]", "Test " + testEntry.getName() + " subtest started.");
+
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                for (CFITFragment fragment : fragmentsList) {
+                    transaction.remove(fragment);
+                    fragmentManager.popBackStack();
+                }
+
+                transaction.commit();
+
+                fragmentsList.clear();
             }
 
             @Override

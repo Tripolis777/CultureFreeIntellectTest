@@ -9,6 +9,7 @@ import android.view.SurfaceView;
 import android.view.View;
 
 import com.android.tripolis.culturefreeintellecttest.Fragment.CFITFragment;
+import com.android.tripolis.culturefreeintellecttest.Fragment.SubtestFragment;
 import com.android.tripolis.culturefreeintellecttest.Fragment.SubtestInfoFragment;
 import com.android.tripolis.culturefreeintellecttest.Realm.DescriptionEntry;
 import com.android.tripolis.culturefreeintellecttest.Realm.SubtestEntry;
@@ -108,7 +109,11 @@ public class Test {
             return false;
         }
 
-        return false;
+        CFITFragment fragment = SubtestFragment.newInstance(subtest);
+        fragment.setFragmentTag(subtestManager.getSubtestDescriptionTag(subtest.getTestNum()));
+        testListener.onFragmentCreated(fragment);
+
+        return true;
     }
 
 //    public void start() {
