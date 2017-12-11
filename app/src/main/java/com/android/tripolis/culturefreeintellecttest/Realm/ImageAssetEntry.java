@@ -9,12 +9,29 @@ import io.realm.RealmObject;
 public class ImageAssetEntry extends RealmObject {
 
     private String resourceName;
+    private int rowsCnt;
+    private int columnsCnt;
 
     public String getResourceName() {
         return resourceName;
     }
+    public int getRowsCnt() {
+        return rowsCnt;
+    }
+
+    public int getColumnsCnt() {
+        return columnsCnt;
+    }
 
     public void setResourceName(String resourceName) {
         this.resourceName = resourceName;
+    }
+
+    public void setRowsCnt(int rowsCnt) {
+        this.rowsCnt = rowsCnt;
+    }
+
+    public void setColumnsCnt(int columnsCnt) {
+        this.columnsCnt = columnsCnt;
     }
 }
