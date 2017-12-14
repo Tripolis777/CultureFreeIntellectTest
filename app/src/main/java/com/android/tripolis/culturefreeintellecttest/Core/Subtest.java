@@ -29,17 +29,20 @@ public class Subtest {
 
     private final SubtestEntry subtestEntry;
     private final Context context;
+    private final AssetManager assetManager;
     //private ImageCutter questionImage;
     //private ImageCutter answerImage;
 
     public Subtest(@NonNull final Context context, @NonNull SubtestEntry subtestEntry) {
         this.subtestEntry = subtestEntry;
         this.context = context;
+
+        assetManager = new AssetManager(context);
     }
 
     public QuestionManager getQuestionManager() {
         if (questionManager == null)
-            questionManager = new QuestionManager(subtestEntry.getQuestionsList());
+            questionManager = new QuestionManager(subtestEntry.getQuestionsList(), assetManager);
         return questionManager;
     }
 

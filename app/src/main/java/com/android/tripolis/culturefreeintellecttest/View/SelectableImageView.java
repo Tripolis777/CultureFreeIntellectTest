@@ -42,7 +42,7 @@ public class SelectableImageView extends AppCompatImageView {
             public void onClick(View v) {
                 if (!selectEnabled) return;
 
-                SelectableImageView.this.setBackgroundResource(selected ? 0 : selectResource);
+                SelectableImageView.this.setBackgroundResource(selected ? R.drawable.answer_image_border : selectResource);
 
                 if (selectListener != null) {
                     if (selected)

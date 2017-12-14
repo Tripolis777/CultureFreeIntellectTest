@@ -1,6 +1,9 @@
 package com.android.tripolis.culturefreeintellecttest.Realm;
 
+import android.graphics.Bitmap;
+
 import io.realm.RealmObject;
+import io.realm.annotations.Ignore;
 
 /**
  * Created by tripo on 11/14/2017.

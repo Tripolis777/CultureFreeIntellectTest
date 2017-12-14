@@ -12,6 +12,7 @@ public class QuestionEntry extends RealmObject {
 
     private int subtestIdx;
     private int type;
+    private int num;
 
     private TestEntry test;
     private AnswerEntry answerEntry;
@@ -37,6 +38,10 @@ public class QuestionEntry extends RealmObject {
         return imageAssetEntry;
     }
 
+    public int getNum() {
+        return num;
+    }
+
     public void setSubtestIdx(int subtestIdx) {
         this.subtestIdx = subtestIdx;
     }
@@ -47,6 +52,10 @@ public class QuestionEntry extends RealmObject {
 
     public void setType(int type) {
         this.type = type;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
     }
 
     public void setAnswerEntry(AnswerEntry answerEntry) {

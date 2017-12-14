@@ -10,6 +10,7 @@ public class AnswerEntry extends RealmObject {
 
     private int weight;
     private int type;
+    private int num;
     private String data;
 
     //private QuestionEntry questionEntry;
@@ -31,9 +32,17 @@ public class AnswerEntry extends RealmObject {
         return imageAssetEntry;
     }
 
+    public int getNum() {
+        return num;
+    }
+
 //    public QuestionEntry getQuestionEntry() {
 //        return questionEntry;
 //    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
 
     public void setWeight(int weight) {
         this.weight = weight;

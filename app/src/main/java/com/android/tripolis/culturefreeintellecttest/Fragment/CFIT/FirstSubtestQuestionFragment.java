@@ -1,8 +1,10 @@
 package com.android.tripolis.culturefreeintellecttest.Fragment.CFIT;
 
 import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -65,15 +67,15 @@ public class FirstSubtestQuestionFragment extends CFITFragment {
         answerImageViews[4] = (SelectableImageView) rootView.findViewById(R.id.subtestFirstImageAnswer5);
 
         final Resources res = getResources();
-        Drawable questionDrawable = res.getDrawable(R.drawable.question);
-
-
-        for (ImageView image : questionImageViews) {
-            image.setImageDrawable(questionDrawable);
+        Bitmap[] questionImages = question.getQuestionImages();
+        for (int i = 0; i < QUESTION_IMAGE_COUNT; i++) {
+            questionImageViews[i].setImageDrawable(new BitmapDrawable(res, questionImages[i]));
         }
 
-        for (final SelectableImageView image : answerImageViews) {
-            image.setImageDrawable(questionDrawable);;
+        Bitmap[] answerImages = question.getAnswerImages();
+        for (int i = 0; i < ANSWER_IMAGE_COUNT; i++) {
+            SelectableImageView image = answerImageViews[i];
+            image.setImageDrawable(new BitmapDrawable(res, answerImages[i]));
             image.setSelectResource(R.drawable.active_answer_border);
             image.setSelectListener(new SelectableImageView.OnImageSelectListener() {
                 @Override

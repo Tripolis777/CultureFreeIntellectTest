@@ -1,5 +1,6 @@
 package com.android.tripolis.culturefreeintellecttest.Core;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.android.tripolis.culturefreeintellecttest.Realm.QuestionEntry;
@@ -16,14 +17,16 @@ public class QuestionManager {
 
     private FragmentFactory<Question> fragmentFactory;
     private ArrayList<Question> questions;
+    private final AssetManager assetManager;
 
     private int questionsCount;
 
-    public QuestionManager(RealmList<QuestionEntry> questionEntries) {
+    public QuestionManager(RealmList<QuestionEntry> questionEntries, final AssetManager assetManager) {
         questions = new ArrayList<>();
+        this.assetManager = assetManager;
 
         for (QuestionEntry entry : questionEntries) {
-            questions.add(new Question(entry));
+            questions.add(new Question(entry, assetManager));
         }
     }
 

@@ -79,6 +79,22 @@ public class CFITApplication extends Application {
         imageAssetEntry.setResourceName("image_description1");
         realm.commitTransaction();
 
+        // Create Answer Atlas Asset
+        realm.beginTransaction();
+        ImageAssetEntry answerAtlasEntry = realm.createObject(ImageAssetEntry.class);
+        answerAtlasEntry.setResourceName("answers_atlas_1");
+        answerAtlasEntry.setColumnsCnt(8);
+        answerAtlasEntry.setRowsCnt(8);
+        realm.commitTransaction();
+
+        // Create Question Atlas Asset
+        realm.beginTransaction();
+        ImageAssetEntry questionAtlasEntry = realm.createObject(ImageAssetEntry.class);
+        questionAtlasEntry.setResourceName("questions_atlas_1");
+        questionAtlasEntry.setColumnsCnt(6);
+        questionAtlasEntry.setRowsCnt(6);
+        realm.commitTransaction();
+
         String descriptionData = "";
         try {
             JSONObject jsonObject = new JSONObject();
@@ -167,7 +183,7 @@ public class CFITApplication extends Application {
         // Create Answer
         realm.beginTransaction();
         AnswerEntry answerEntry = realm.createObject(AnswerEntry.class);
-        answerEntry.setImageAssetEntry(imageAssetEntry);
+        answerEntry.setImageAssetEntry(answerAtlasEntry);
         answerEntry.setWeight(100);
         answerEntry.setType(1);
         realm.commitTransaction();
@@ -177,20 +193,22 @@ public class CFITApplication extends Application {
         realm.beginTransaction();
         QuestionEntry questionEntry = realm.createObject(QuestionEntry.class);
         questionEntry.setType(1);
+        questionEntry.setNum(1);
         questionEntry.setTest(testEntry);
         questionEntry.setSubtestIdx(1);
         questionEntry.setAnswerEntry(answerEntry);
-        questionEntry.setImageAssetEntry(imageAssetEntry);
+        questionEntry.setImageAssetEntry(questionAtlasEntry);
         realm.commitTransaction();
 
         //Create Question 2
         realm.beginTransaction();
         QuestionEntry questionEntry2 = realm.createObject(QuestionEntry.class);
         questionEntry2.setType(1);
+        questionEntry2.setNum(2);
         questionEntry2.setTest(testEntry);
         questionEntry2.setSubtestIdx(1);
         questionEntry2.setAnswerEntry(answerEntry);
-        questionEntry2.setImageAssetEntry(imageAssetEntry);
+        questionEntry2.setImageAssetEntry(questionAtlasEntry);
         realm.commitTransaction();
 
         // Create Subtest
